@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.sonarqube'
 
 android {
     buildToolsVersion '28.0.3'
@@ -111,12 +112,21 @@ android {
             path "src/main/jni/Android.mk"
         }
     }
+
+    sonarqube {
+        properties {
+            property "sonar.projectKey", "projectName"
+        }
+    }
+    sourceSets { main { java.srcDirs = ['src/main/java', 'src/test', 'src/test/java/'] } }
 }
 
 dependencies {
     implementation 'org.bouncycastle:bcprov-jdk15on:1.59'
     implementation 'org.bouncycastle:bcpkix-jdk15on:1.59'
     implementation 'org.jcodec:jcodec:0.2.3'
-
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:2.10.0'
+    testCompile group: 'org.testng', name: 'testng', version: '5.7'
     implementation project(':moonlight-common')
 }

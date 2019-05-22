@@ -3,9 +3,10 @@ buildscript {
     repositories {
         jcenter()
         google()
-    }
+     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.2'
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.7.1"
     }
 }
 
